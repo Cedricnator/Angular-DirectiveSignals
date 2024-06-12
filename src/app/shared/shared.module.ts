@@ -10,6 +10,10 @@ import { CustomLabelDirective } from './directives/custom-label.directive';
   ],
   imports: [
     CommonModule
+  ],
+  exports: [
+    CustomLabelDirective,
   ]
+
 })
 export class SharedModule { }
