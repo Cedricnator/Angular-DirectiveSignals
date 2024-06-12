@@ -1,1 +1,8 @@
-/* You can add global styles to this file, and also import other style files */
+:root{
+   --dark: #151515
+}
+
+body{
+   background-color: var(--dark);
+   color: beige;
+}/* You can add global styles to this file, and also import other style files */
