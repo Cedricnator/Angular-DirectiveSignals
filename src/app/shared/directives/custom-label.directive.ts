@@ -1,6 +1,7 @@
 import { Directive, ElementRef, Input, OnInit } from '@angular/core';
 import { MinLengthValidator, ValidationErrors } from '@angular/forms';
-//* El selector deberia de ir como camelCase
+//* El selector deberia de ir como camelCase.
+//* Se suelen usar para errores, o para cambiar el color de un label o para un drag and drop.
 @Directive({
   selector: '[customLabel]'
 })
@@ -44,11 +45,17 @@ export class CustomLabelDirective implements OnInit {
     const errors = Object.keys(this._errors);
     
     if(errors.includes("minlength")){
-      const min = this.errors!['minlength']['requiredLength'];
-      const current = this._errors!['minlength']['actualLength'];
+      const minLengthError = this.errors && this.errors['minlength'] || this._errors && this._errors['minlength'];
       
-      this.htmlElement.nativeElement.innerHTML = `Mínimo ${min}/${current} caracteres.`;
-      return;
+      if (minLengthError) {
+        const min = minLengthError['requiredLength'];
+        const current = minLengthError['actualLength'];
+        
+        if (min !== undefined && current !== undefined) {
+          this.htmlElement.nativeElement.innerHTML = `Mínimo ${min}/${current} caracteres.`;
+          return;
+        }
+      }
     }
     
     if(errors.includes("email")){
