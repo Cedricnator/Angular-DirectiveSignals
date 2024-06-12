@@ -23,9 +23,14 @@ const routes: Routes = [
       {
         path: 'properties',
         component: PropertiesPageComponent
+      },
+      {
+        path: '**',
+        redirectTo: 'counter'
       }
+
     ]
-  }
+  },
 ];
 
 @NgModule({
